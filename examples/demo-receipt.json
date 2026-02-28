@@ -1,0 +1,526 @@
+{
+  "receipt": {
+    "receipt_id": "5e492cc3-aef9-4ee7-b32d-4178e3939fb4",
+    "schema_version": "0.1.1",
+    "schema_hash": "89941bfc0ad9e61f943b4c2916563322b843d6680c050fbd6396700a4245e01e",
+    "created_at_utc": "2026-02-27T14:00:22+00:00",
+    "status": "active",
+    "issuer": {
+      "organization": "Apex Defense Solutions",
+      "product": "NeoXFortress AAE",
+      "build": {
+        "version": "0.1.1-ref",
+        "commit": "d5ec6e5"
+      }
+    },
+    "receipt_type": "agent_execution",
+    "labels": [
+      "CMMC",
+      "RFP",
+      "CUI"
+    ]
+  },
+  "context": {
+    "subject": {
+      "agent": {
+        "agent_id": "agent-rfp-summarizer-001",
+        "name": "RFP Summarization Agent",
+        "type": "assistant",
+        "agent_version": "1.0.0",
+        "agent_code_hash": "874e4174fff01f4ca29ce45220e558067ff8255a4193a3fee3d3cfdaff4dfc27",
+        "framework": {
+          "name": "custom",
+          "version": "1.0.0"
+        },
+        "purpose": "Summarize RFP documents for internal bid/no-bid review",
+        "owner_team": "AI Engineering",
+        "runtime": {
+          "language": "python",
+          "language_version": "3.11.8"
+        }
+      },
+      "operator": {
+        "principal_id": "usr-jsmith-0042",
+        "principal_type": "human_user",
+        "authn": {
+          "idp": "Entra ID",
+          "authn_method": "MFA",
+          "session_id": "sess-3ee1e4ca068f"
+        },
+        "role": "Senior Contracts Analyst"
+      },
+      "sponsor": {
+        "principal_id": "usr-mwilliams-0018",
+        "principal_type": "human_user",
+        "role": "Director of Business Development"
+      }
+    },
+    "environment": {
+      "deployment_model": "self_hosted",
+      "host": {
+        "hostname_hash": "d669cd821818dde81f80638ae085cbd4e5c6ee3ec4d9557ad287ddc41860c5d3",
+        "os": "Ubuntu 22.04 LTS",
+        "network_boundary": "CUI enclave",
+        "ip_hash": "236ec3527138da6b09d46b3feb144bd5a7808f6c901e06b4d959a4fa54ab0f6a"
+      },
+      "clock": {
+        "time_source": "NTP stratum 2 (time.nist.gov)",
+        "skew_ms": 3
+      },
+      "deployment_fingerprint": {
+        "container_image_digest": "sha256:73df771ed03fa771aaffbe2cc2e0010411fe07c808e291657c7eec9e7becea3a",
+        "sbom_hash": "8d1651f6e1f309612cf78b01139ea737a639e40041dd82b3557f45069afc646d",
+        "dependency_lockfile_hash": "f4575733ec3834cac5066a86d5c072b8dfd7d23d5fe2caaab5af37a02eb3f4e9"
+      }
+    },
+    "time_window": {
+      "started_at_utc": "2026-02-27T14:00:00+00:00",
+      "ended_at_utc": "2026-02-27T14:00:20+00:00"
+    },
+    "case": {
+      "case_id": "BD-2026-0142",
+      "case_system": "Jira"
+    }
+  },
+  "policy": {
+    "policy_id": "pol-apex-ai-governance",
+    "policy_version": "2.1.0",
+    "policy_hash": "14f3b1a38d40c8f4ed7fe512cd3f1a2eb34258841035d681ddf9092fe0c617fc",
+    "controls": {
+      "logging_mode": "metadata_only",
+      "content_capture": "none",
+      "classification_mode": "rule_based",
+      "human_approval_required": true,
+      "tool_allowlist_enforced": true
+    },
+    "approvals": [
+      {
+        "approval_id": "appr-001",
+        "approved_at_utc": "2026-02-27T13:00:00+00:00",
+        "approver": {
+          "principal_id": "usr-mwilliams-0018",
+          "principal_type": "human_user",
+          "role": "Director of Business Development"
+        },
+        "scope": "Process RFP BD-2026-0142 through AI summarization pipeline",
+        "decision": "approved",
+        "notes": "Approved for internal bid/no-bid analysis only."
+      }
+    ]
+  },
+  "execution": {
+    "run": {
+      "run_id": "259a5a77-0d7a-4ac6-ab55-961b8f720832",
+      "run_purpose": "Summarize RFP for internal bid/no-bid decision (BD-2026-0142)",
+      "status": "success",
+      "inputs": [
+        {
+          "ref_id": "ref-run-input",
+          "representation": "hash_only",
+          "hash": "8d465ab1248ea0af61c27ab5e2796ade66fbd5d868f1c55db9b0a89da1d3e9c6",
+          "hash_alg": "sha256",
+          "source_hint": "Local file",
+          "mime_type": "application/pdf"
+        }
+      ],
+      "outputs": [
+        {
+          "ref_id": "ref-run-output",
+          "representation": "hash_only",
+          "hash": "904363d246d4971d50b1a7d5b8a8b519cbdc6312e019aefb581787e1775fe0b1",
+          "hash_alg": "sha256",
+          "source_hint": "Output file"
+        }
+      ]
+    },
+    "steps": [
+      {
+        "step_id": "step-001",
+        "parent_step_id": null,
+        "timestamp_utc": "2026-02-27T14:00:00+00:00",
+        "type": "human_checkpoint",
+        "summary": "Operator uploaded RFP document for agent processing",
+        "actor": "operator",
+        "human_checkpoint": {
+          "presented_artifact": {
+            "ref_id": "ref-upload-preview",
+            "representation": "full_text",
+            "hash": "3072fbacbea67557f96bddf3dba378a88b8f5ecf9def76b8cf4392589dec0b7d",
+            "hash_alg": "sha256",
+            "source_hint": "Local file",
+            "content": "RFP filename: cloud-migration-rfp-2026.pdf (142 pages)"
+          },
+          "presentation_mode": "summary",
+          "reviewer_action": "approved",
+          "review_duration_ms": 4200
+        },
+        "artifacts": {
+          "inputs": [
+            {
+              "ref_id": "ref-rfp-doc",
+              "representation": "hash_only",
+              "hash": "8d465ab1248ea0af61c27ab5e2796ade66fbd5d868f1c55db9b0a89da1d3e9c6",
+              "hash_alg": "sha256",
+              "source_hint": "Local file",
+              "mime_type": "application/pdf"
+            }
+          ],
+          "outputs": [],
+          "classifications": [
+            {
+              "tag": "CUI",
+              "confidence": 1.0,
+              "method": "rule_based",
+              "rule_id": "cui-header-detect-001",
+              "notes": "Document header contains CUI marking"
+            }
+          ]
+        }
+      },
+      {
+        "step_id": "step-002",
+        "parent_step_id": "step-001",
+        "timestamp_utc": "2026-02-27T14:00:05+00:00",
+        "type": "llm_call",
+        "summary": "Called GPT-4 to summarize RFP document",
+        "actor": "agent",
+        "model": {
+          "provider": "OpenAI",
+          "model_id": "gpt-4-turbo-2025-12-01",
+          "region": "us-east-1"
+        },
+        "artifacts": {
+          "inputs": [
+            {
+              "ref_id": "ref-prompt",
+              "representation": "hash_only",
+              "hash": "fbd84645565491fc9b74252e01aafdfd16ce59929072e245a328330588445df3",
+              "hash_alg": "sha256",
+              "source_hint": "Agent prompt template"
+            }
+          ],
+          "outputs": [
+            {
+              "ref_id": "ref-llm-output",
+              "representation": "hash_only",
+              "hash": "3d39c22086ef1a6028b801a2215c735e05ead59838ccfd54a2487bc1f9191ed8",
+              "hash_alg": "sha256"
+            }
+          ],
+          "classifications": [
+            {
+              "tag": "CUI",
+              "confidence": 0.85,
+              "method": "rule_based",
+              "rule_id": "cui-keyword-scan-003"
+            }
+          ]
+        },
+        "metrics": {
+          "latency_ms": 3200,
+          "tokens_in": 8450,
+          "tokens_out": 1240
+        }
+      },
+      {
+        "step_id": "step-003",
+        "parent_step_id": "step-002",
+        "timestamp_utc": "2026-02-27T14:00:09+00:00",
+        "type": "tool_call",
+        "summary": "Extracted structured requirements from LLM output",
+        "actor": "agent",
+        "tool": {
+          "tool_name": "requirement_extractor",
+          "tool_version": "1.2.0",
+          "permission_scope": "read_llm_output"
+        },
+        "artifacts": {
+          "inputs": [
+            {
+              "ref_id": "ref-llm-output-for-extract",
+              "representation": "hash_only",
+              "hash": "3d39c22086ef1a6028b801a2215c735e05ead59838ccfd54a2487bc1f9191ed8",
+              "hash_alg": "sha256"
+            }
+          ],
+          "outputs": [
+            {
+              "ref_id": "ref-extracted-reqs",
+              "representation": "hash_only",
+              "hash": "94a8519d3198647a293bc302ffa98d41922ec526575e69bf55bc970ff48b519b",
+              "hash_alg": "sha256"
+            }
+          ],
+          "classifications": [
+            {
+              "tag": "PROPRIETARY",
+              "confidence": 1.0,
+              "method": "rule_based",
+              "rule_id": "internal-analysis-tag-001"
+            }
+          ]
+        },
+        "metrics": {
+          "latency_ms": 450
+        }
+      },
+      {
+        "step_id": "step-004",
+        "parent_step_id": "step-003",
+        "timestamp_utc": "2026-02-27T14:00:10+00:00",
+        "type": "guardrail_event",
+        "summary": "CUI content detected in agent output \u2014 redaction applied",
+        "actor": "system",
+        "artifacts": {
+          "inputs": [
+            {
+              "ref_id": "ref-guardrail-input",
+              "representation": "hash_only",
+              "hash": "3d39c22086ef1a6028b801a2215c735e05ead59838ccfd54a2487bc1f9191ed8",
+              "hash_alg": "sha256"
+            }
+          ],
+          "outputs": [
+            {
+              "ref_id": "ref-guardrail-output",
+              "representation": "redacted_text",
+              "hash": "c114caf4bf5f7411aa47c560e2b02a5f886080e02113c20ec7313d74d8edcc49",
+              "hash_alg": "sha256",
+              "content": "[REDACTED: CUI paragraph removed] The RFP requests cloud migration services for a Do",
+              "content_redaction": {
+                "method": "regex_cui_pattern",
+                "redaction_count": 2
+              }
+            }
+          ],
+          "classifications": [
+            {
+              "tag": "CUI",
+              "confidence": 1.0,
+              "method": "rule_based",
+              "rule_id": "cui-boundary-check-007"
+            }
+          ],
+          "guardrails": [
+            {
+              "event_id": "gr-001",
+              "timestamp_utc": "2026-02-27T14:00:10+00:00",
+              "event_type": "redaction",
+              "action": "redacted",
+              "reason": "CUI content detected in output destined for non-CUI system",
+              "policy_rule_id": "cui-boundary-check-007",
+              "attempted_action": "Write summary containing CUI to internal wiki (non-CUI)",
+              "target_resource_hint": "Wiki:internal/rfp-summaries/***"
+            }
+          ]
+        }
+      },
+      {
+        "step_id": "step-005",
+        "parent_step_id": "step-004",
+        "timestamp_utc": "2026-02-27T14:00:15+00:00",
+        "type": "human_checkpoint",
+        "summary": "Compliance lead reviewed redacted summary before distribution",
+        "actor": "operator",
+        "human_checkpoint": {
+          "presented_artifact": {
+            "ref_id": "ref-review-artifact",
+            "representation": "redacted_text",
+            "hash": "41c4f7d7911fac189fadae982da058371db1fd3de6f8ce1bcb0d1c61f585e6c8",
+            "hash_alg": "sha256",
+            "content": "[Redacted summary presented to reviewer]",
+            "content_redaction": {
+              "method": "regex_cui_pattern",
+              "redaction_count": 2
+            }
+          },
+          "presentation_mode": "redacted",
+          "reviewer_action": "approved",
+          "review_duration_ms": 45000
+        },
+        "artifacts": {
+          "inputs": [
+            {
+              "ref_id": "ref-redacted-for-review",
+              "representation": "hash_only",
+              "hash": "cb2379b5ed56ae505cea5c8a7cc1d5d7ff56fc9db7dd5090e22a79979cc9ff71",
+              "hash_alg": "sha256"
+            }
+          ],
+          "outputs": [
+            {
+              "ref_id": "ref-approved-summary",
+              "representation": "hash_only",
+              "hash": "904363d246d4971d50b1a7d5b8a8b519cbdc6312e019aefb581787e1775fe0b1",
+              "hash_alg": "sha256"
+            }
+          ],
+          "classifications": [
+            {
+              "tag": "PROPRIETARY",
+              "confidence": 1.0,
+              "method": "rule_based",
+              "rule_id": "post-redaction-reclass-001",
+              "notes": "Reclassified after CUI redaction"
+            }
+          ]
+        }
+      },
+      {
+        "step_id": "step-006",
+        "parent_step_id": "step-005",
+        "timestamp_utc": "2026-02-27T14:00:20+00:00",
+        "type": "decision",
+        "summary": "Agent finalized structured summary for distribution",
+        "actor": "agent",
+        "artifacts": {
+          "inputs": [
+            {
+              "ref_id": "ref-final-input",
+              "representation": "hash_only",
+              "hash": "904363d246d4971d50b1a7d5b8a8b519cbdc6312e019aefb581787e1775fe0b1",
+              "hash_alg": "sha256"
+            }
+          ],
+          "outputs": [
+            {
+              "ref_id": "ref-final-output",
+              "representation": "hash_only",
+              "hash": "904363d246d4971d50b1a7d5b8a8b519cbdc6312e019aefb581787e1775fe0b1",
+              "hash_alg": "sha256",
+              "source_hint": "Output file"
+            }
+          ],
+          "classifications": [
+            {
+              "tag": "PROPRIETARY",
+              "confidence": 1.0,
+              "method": "rule_based",
+              "rule_id": "output-class-001"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "data_handling": {
+    "storage": {
+      "receipt_storage_location": "local_fs",
+      "content_storage_location": "none",
+      "byok": false
+    },
+    "retention": {
+      "receipt_days": 365,
+      "content_days": 0,
+      "retention_enforcement": {
+        "method": "automated_cron",
+        "last_verified_utc": "2026-02-26T14:00:00+00:00"
+      }
+    },
+    "keys": {
+      "signing_key_id": "demo-key-001",
+      "key_management": "local_kms"
+    }
+  },
+  "integrity": {
+    "canonicalization": {
+      "method": "json_canonicalization_scheme",
+      "notes": "JCS per RFC 8785. Sorted keys, no whitespace, ASCII-safe."
+    },
+    "hash_chain": {
+      "alg": "sha256",
+      "chain": [
+        {
+          "step_id": "step-001",
+          "hash": "851d86b8a6373880a999ffc376f72c0091f9a7a5795a5259fa2a965cf8d38d59",
+          "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "step_id": "step-002",
+          "hash": "ebb36ae89646d546569a7c65fec17cb7e975f0b64b09f796973b7083ca2390dd",
+          "prev_hash": "851d86b8a6373880a999ffc376f72c0091f9a7a5795a5259fa2a965cf8d38d59"
+        },
+        {
+          "step_id": "step-003",
+          "hash": "8ec13f6ef3a8b4225da4817e6706f8b509036cb32a3b4d259857f453b3c9cf7c",
+          "prev_hash": "ebb36ae89646d546569a7c65fec17cb7e975f0b64b09f796973b7083ca2390dd"
+        },
+        {
+          "step_id": "step-004",
+          "hash": "0f719cd6c1ad74ee6a9a26aabf9a44ef2e5ecf3fcdb6b77f7b03654dbe80b92f",
+          "prev_hash": "8ec13f6ef3a8b4225da4817e6706f8b509036cb32a3b4d259857f453b3c9cf7c"
+        },
+        {
+          "step_id": "step-005",
+          "hash": "d2f9fc32a2770b0e29504c518d8578c644667f934bcb58f292707ecb2d6d96f0",
+          "prev_hash": "0f719cd6c1ad74ee6a9a26aabf9a44ef2e5ecf3fcdb6b77f7b03654dbe80b92f"
+        },
+        {
+          "step_id": "step-006",
+          "hash": "3248daf080402ea56cc335659549665b2d83831acf640dc227709f570334b054",
+          "prev_hash": "d2f9fc32a2770b0e29504c518d8578c644667f934bcb58f292707ecb2d6d96f0"
+        }
+      ],
+      "final_hash": "3248daf080402ea56cc335659549665b2d83831acf640dc227709f570334b054"
+    },
+    "signature": {
+      "type": "hmac_sha256",
+      "key_id": "demo-key-001",
+      "value": "a/GKHeZwCGWzoFUbXOw63UApUBDtiZn7K/VGD12m6gY=",
+      "signed_at_utc": "2026-02-27T14:00:22+00:00",
+      "signed_payload": "canonical_receipt_plus_final_hash",
+      "encoding": "base64",
+      "verification": {
+        "procedure": "1. Canonicalize receipt JSON using JCS (RFC 8785). 2. Concatenate canonical bytes with final_hash string. 3. Compute HMAC-SHA256 using key identified by key_id. 4. Compare with base64-decoded signature value. NOTE: v0.1.1 uses symmetric HMAC. Both signer and verifier share the key, limiting non-repudiation. Asymmetric signatures planned for v0.2."
+      }
+    }
+  },
+  "compliance": {
+    "verdict": "compliant",
+    "assessed_by": "engine_rule_set",
+    "violated_controls": [],
+    "risk_score": 1.5,
+    "framework": "CMMC L2",
+    "notes": "CUI detected and properly redacted before boundary crossing. Human checkpoint completed with adequate review time. All steps within policy."
+  },
+  "cui_flow": [
+    {
+      "direction": "in",
+      "boundary": "Local file system (CUI enclave) to agent memory",
+      "data_hash": "8d465ab1248ea0af61c27ab5e2796ade66fbd5d868f1c55db9b0a89da1d3e9c6",
+      "classification": "CUI",
+      "redacted": false,
+      "step_ids": [
+        "step-001"
+      ],
+      "timestamp_utc": "2026-02-27T14:00:00+00:00",
+      "policy_rule_id": "cui-ingest-allow-001"
+    },
+    {
+      "direction": "out",
+      "boundary": "Agent memory to OpenAI API (external)",
+      "data_hash": "fbd84645565491fc9b74252e01aafdfd16ce59929072e245a328330588445df3",
+      "classification": "CUI",
+      "redacted": false,
+      "step_ids": [
+        "step-002"
+      ],
+      "timestamp_utc": "2026-02-27T14:00:05+00:00",
+      "policy_rule_id": "cui-llm-transit-002"
+    },
+    {
+      "direction": "out",
+      "boundary": "Agent output to internal wiki (non-CUI system)",
+      "data_hash": "904363d246d4971d50b1a7d5b8a8b519cbdc6312e019aefb581787e1775fe0b1",
+      "classification": "PROPRIETARY",
+      "redacted": true,
+      "redaction_method": "regex_cui_pattern",
+      "step_ids": [
+        "step-004",
+        "step-005"
+      ],
+      "timestamp_utc": "2026-02-27T14:00:15+00:00",
+      "policy_rule_id": "cui-boundary-check-007"
+    }
+  ]
+}
