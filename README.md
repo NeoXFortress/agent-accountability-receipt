@@ -6,6 +6,36 @@ Created by **Julio Berroa** · Published by [NeoXFortress](https://neoxfortress.
 
 ---
 
+> AI agents are already making decisions inside defense contractors. Most cannot prove what happened. This standard fixes that.
+
+---
+
+## Architecture
+
+```mermaid
+flowchart LR
+    A[AI Agent Executes] --> B[Execution Steps Recorded]
+    B --> C[Each Step Hash-Linked]
+    C --> D[CUI Flow Tracked]
+    D --> E[Policy Snapshot Bound]
+    E --> F[HMAC Signed]
+    F --> G["📄 Accountability Receipt"]
+
+    G --> H[Prime Contractor]
+    G --> I[CMMC Assessor]
+    G --> J[Internal Auditor]
+    G --> K[Incident Review Board]
+
+    style A fill:#1a1a2e,stroke:#e94560,color:#fff
+    style G fill:#0f3460,stroke:#e94560,color:#fff
+    style H fill:#16213e,stroke:#0f3460,color:#fff
+    style I fill:#16213e,stroke:#0f3460,color:#fff
+    style J fill:#16213e,stroke:#0f3460,color:#fff
+    style K fill:#16213e,stroke:#0f3460,color:#fff
+```
+
+---
+
 ## The Problem
 
 Defense-tech and mid-size GovCon contractors are deploying AI agents internally — for RFP summarization, document search, report drafting, and workflow automation.
@@ -52,13 +82,39 @@ The **Agent Accountability Receipt** is a structured, hash-chained, HMAC-signed 
 
 ```bash
 # Clone the repository
-git clone https://github.com/neoxfortress/agent-accountability-receipt.git
+git clone https://github.com/NeoXFortress/agent-accountability-receipt.git
+cd agent-accountability-receipt
 
-# Validate the schema
-python3 -c "import json; json.load(open('schema.json')); print('Schema valid')"
+# Install dependencies
+pip install -r requirements.txt
 
-# View an example receipt
-cat examples/demo-receipt.json | python3 -m json.tool
+# Generate a demo receipt (RFP summarization scenario)
+cd reference_impl
+python3 generate_receipt.py
+
+# Output:
+#   PASS: Hash chain verified (6 steps)
+#   PASS: HMAC-SHA256 signature verified
+#   PASS: Receipt validates against schema.json
+#   ALL CHECKS PASSED
+
+# View the generated receipt
+cat ../examples/demo-receipt.json | python3 -m json.tool
+```
+
+## Repository Structure
+
+```
+agent-accountability-receipt/
+├── schema.json                        ← v0.1.1 JSON Schema specification
+├── README.md
+├── LICENSE                            ← MIT (schema) + proprietary notice
+├── NOTICE                             ← Copyright attribution
+├── requirements.txt                   ← Python dependencies
+├── reference_impl/
+│   └── generate_receipt.py            ← Reference generator + verifier
+└── examples/
+    └── demo-receipt.json              ← RFP summarization demo receipt
 ```
 
 ## Schema Structure
