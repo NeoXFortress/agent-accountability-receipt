@@ -1,0 +1,19 @@
+NOTICE
+
+Agent Accountability Receipt Schema
+Copyright (c) 2026 Julio Berroa / NeoXFortress LLC
+All rights reserved.
+
+This schema specification is licensed under the MIT License.
+See LICENSE for terms.
+
+The commercial implementation — NeoXFortress Agent Accountability Engine (AAE),
+including the Python SDK, receipt generation engine, PDF exporter, CUI
+classifier, CLI verification tools, and local web viewer — is proprietary
+software owned by NeoXFortress LLC and requires a commercial license.
+
+Author:     Julio Berroa
+Company:    NeoXFortress LLC
+Location:   Ashburn, Virginia, USA
+Website:    https://neoxfortress.com
+Contact:    https://neoxfortress.com/contact
