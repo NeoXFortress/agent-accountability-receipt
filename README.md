@@ -112,10 +112,25 @@ agent-accountability-receipt/
 ├── NOTICE                             ← Copyright attribution
 ├── requirements.txt                   ← Python dependencies
 ├── reference_impl/
-│   └── generate_receipt.py            ← Reference generator + verifier
+│   ├── generate_receipt.py            ← Reference generator + verifier
+│   ├── scenario_cui_blocked.py        ← CUI exfiltration blocked scenario
+│   ├── scenario_human_rejected.py     ← Human checkpoint rejection scenario
+│   └── scenario_revoked.py            ← Receipt revocation scenario
 └── examples/
-    └── demo-receipt.json              ← RFP summarization demo receipt
+    ├── demo-receipt.json              ← ✅ Happy path: RFP summarization (6 steps)
+    ├── cui-exfiltration-blocked.json  ← 🚫 Agent tried to send CUI to Slack, blocked
+    ├── human-checkpoint-rejected.json ← ❌ Reviewer rejected hallucinated DFARS answer
+    └── receipt-revoked.json           ← 🔒 Valid receipt revoked after key compromise
 ```
+
+## Example Scenarios
+
+| Scenario | Status | Steps | What It Demonstrates |
+|---|---|---|---|
+| **RFP Summarization** | `success` / `compliant` | 6 | Happy path: CUI detected, redacted at boundary, human approved |
+| **CUI Exfiltration Blocked** | `failed` / `non_compliant` | 3 | Agent tried to send CUI to external Slack — guardrail blocked it |
+| **Human Checkpoint Rejected** | `partial` / `review_required` | 5 | LLM hallucinated a DFARS regulation (24h vs 72h) — reviewer rejected |
+| **Receipt Revoked** | `revoked` | 3 | Originally valid receipt revoked after signing key compromise discovery |
 
 ## Schema Structure
 

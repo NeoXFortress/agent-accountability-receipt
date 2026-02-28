@@ -1,0 +1,345 @@
+{
+  "receipt": {
+    "receipt_id": "019536a1-7c4e-7000-8000-4d4e0f1d4ec0",
+    "schema_version": "0.1.1",
+    "schema_hash": "89941bfc0ad9e61f943b4c2916563322b843d6680c050fbd6396700a4245e01e",
+    "created_at_utc": "2026-03-01T10:00:12+00:00",
+    "status": "revoked",
+    "revocation_reason": "HMAC signing key (demo-key-001) was exposed in a misconfigured S3 backup discovered on 2026-03-04. All receipts signed with this key between 2026-02-15 and 2026-03-04 are revoked. A replacement receipt has been generated with a new signing key.",
+    "revoked_at_utc": "2026-03-04T16:45:00+00:00",
+    "revoked_by": {
+      "principal_id": "usr-dpark-0005",
+      "principal_type": "human_user",
+      "role": "Chief Information Security Officer"
+    },
+    "superseded_by": "019539f2-8d5f-7000-8000-ae1f3983a14a",
+    "issuer": {
+      "organization": "Apex Defense Solutions",
+      "product": "NeoXFortress AAE",
+      "build": {
+        "version": "0.1.1-ref",
+        "commit": "7afa8bb"
+      }
+    },
+    "receipt_type": "agent_execution",
+    "related_receipts": [
+      {
+        "receipt_id": "019539f2-8d5f-7000-8000-ae1f3983a14a",
+        "relationship": "supersedes",
+        "description": "Replacement receipt generated with rotated signing key (key-002) after key compromise incident SEC-2026-0091."
+      }
+    ],
+    "labels": [
+      "REVOKED",
+      "KEY-COMPROMISE",
+      "SECURITY-INCIDENT"
+    ]
+  },
+  "context": {
+    "subject": {
+      "agent": {
+        "agent_id": "agent-security-reporter-004",
+        "name": "Weekly Security Posture Reporter",
+        "type": "workflow",
+        "agent_version": "1.3.0",
+        "agent_code_hash": "c8ba44b2edbb028986f95bda2e96f7ba15f038c423167760faf519900e80c618",
+        "framework": {
+          "name": "custom",
+          "version": "1.0.0"
+        },
+        "purpose": "Generate weekly security posture reports from SIEM data for ISSO review",
+        "owner_team": "Security Operations",
+        "runtime": {
+          "language": "python",
+          "language_version": "3.11.8"
+        }
+      },
+      "operator": {
+        "principal_id": "svc-secops-reporter",
+        "principal_type": "service_account",
+        "role": "Automated Security Reporting"
+      }
+    },
+    "environment": {
+      "deployment_model": "self_hosted",
+      "host": {
+        "hostname_hash": "33c1e958c76d318be23e0385db58228525057a1b50352c2312d130dd0e6640b9",
+        "os": "Ubuntu 22.04 LTS",
+        "network_boundary": "Corp IT",
+        "ip_hash": "3edaf7536a2d176d35c1f03226d16c743438f1a35116d388ab6922ebd9108ae4"
+      },
+      "clock": {
+        "time_source": "NTP stratum 2",
+        "skew_ms": 1
+      },
+      "deployment_fingerprint": {
+        "container_image_digest": "sha256:73df771ed03fa771aaffbe2cc2e0010411fe07c808e291657c7eec9e7becea3a",
+        "sbom_hash": "8d1651f6e1f309612cf78b01139ea737a639e40041dd82b3557f45069afc646d",
+        "dependency_lockfile_hash": "4c9ade79c2539d6dd2c3c8a1b4bc8eb57a93d7561fc965b66b8d86cdcd17de5e"
+      }
+    },
+    "time_window": {
+      "started_at_utc": "2026-03-01T10:00:00+00:00",
+      "ended_at_utc": "2026-03-01T10:00:10+00:00"
+    },
+    "case": {
+      "case_id": "SEC-2026-0091",
+      "case_system": "ServiceNow"
+    }
+  },
+  "policy": {
+    "policy_id": "pol-apex-ai-governance",
+    "policy_version": "2.1.0",
+    "policy_hash": "14f3b1a38d40c8f4ed7fe512cd3f1a2eb34258841035d681ddf9092fe0c617fc",
+    "controls": {
+      "logging_mode": "metadata_only",
+      "content_capture": "none",
+      "classification_mode": "rule_based",
+      "human_approval_required": true,
+      "tool_allowlist_enforced": true
+    }
+  },
+  "execution": {
+    "run": {
+      "run_id": "0c978cfa-4713-400b-b7de-58f291fd1e67",
+      "run_purpose": "Generate weekly security posture report (Feb 24-28, 2026)",
+      "status": "success",
+      "inputs": [
+        {
+          "ref_id": "ref-run-in",
+          "representation": "hash_only",
+          "hash": "8ad373a61dff580ae7ce98f54ce62ff8160b0fb08d2e6a40d584c10966eeee51",
+          "hash_alg": "sha256",
+          "source_hint": "Scheduled task"
+        }
+      ],
+      "outputs": [
+        {
+          "ref_id": "ref-run-out",
+          "representation": "hash_only",
+          "hash": "784a5a9ffc0e52d192f3e071de08b3af1ca85cfcd73df061181c5f27616f368f",
+          "hash_alg": "sha256",
+          "source_hint": "Output file"
+        }
+      ]
+    },
+    "steps": [
+      {
+        "step_id": "step-001",
+        "parent_step_id": null,
+        "timestamp_utc": "2026-03-01T10:00:00+00:00",
+        "type": "tool_call",
+        "summary": "Queried SIEM API for weekly event summary",
+        "actor": "agent",
+        "tool": {
+          "tool_name": "siem_query",
+          "tool_version": "3.1.0",
+          "endpoint_hint": "internal:siem-api/***",
+          "permission_scope": "read_events_summary"
+        },
+        "artifacts": {
+          "inputs": [
+            {
+              "ref_id": "ref-siem-query",
+              "representation": "hash_only",
+              "hash": "1fd9f4713ee8694a30a57fb08f03c51d7861ed8f7c07a05b640b0ed9cb5aa482",
+              "hash_alg": "sha256",
+              "source_hint": "SIEM API"
+            }
+          ],
+          "outputs": [
+            {
+              "ref_id": "ref-siem-data",
+              "representation": "hash_only",
+              "hash": "662925589e387e696a96f539cc000f0c21bbc79c9807c2771fd06eda7b0d9b3f",
+              "hash_alg": "sha256"
+            }
+          ],
+          "classifications": [
+            {
+              "tag": "PROPRIETARY",
+              "confidence": 1.0,
+              "method": "rule_based",
+              "rule_id": "siem-data-proprietary-001"
+            }
+          ]
+        },
+        "metrics": {
+          "latency_ms": 890
+        }
+      },
+      {
+        "step_id": "step-002",
+        "parent_step_id": "step-001",
+        "timestamp_utc": "2026-03-01T10:00:05+00:00",
+        "type": "llm_call",
+        "summary": "Called Claude to draft weekly security posture report",
+        "actor": "agent",
+        "model": {
+          "provider": "Anthropic",
+          "model_id": "claude-sonnet-4-5-20250929",
+          "region": "us-east-1"
+        },
+        "artifacts": {
+          "inputs": [
+            {
+              "ref_id": "ref-prompt",
+              "representation": "hash_only",
+              "hash": "1f309f953109ee106e47d23a9afc1532f92a949a7f1a334a0c3bd85cbb13915d",
+              "hash_alg": "sha256",
+              "source_hint": "Prompt template"
+            }
+          ],
+          "outputs": [
+            {
+              "ref_id": "ref-report-draft",
+              "representation": "hash_only",
+              "hash": "22a946f54e9a99c0dd0c8ed5637f5df6ce8ee18e94e28d4e923936925386cf1a",
+              "hash_alg": "sha256"
+            }
+          ],
+          "classifications": [
+            {
+              "tag": "PROPRIETARY",
+              "confidence": 1.0,
+              "method": "rule_based",
+              "rule_id": "security-report-proprietary-001"
+            }
+          ]
+        },
+        "metrics": {
+          "latency_ms": 2100,
+          "tokens_in": 1200,
+          "tokens_out": 340
+        }
+      },
+      {
+        "step_id": "step-003",
+        "parent_step_id": "step-002",
+        "timestamp_utc": "2026-03-01T10:00:10+00:00",
+        "type": "human_checkpoint",
+        "summary": "ISSO reviewed and approved weekly security posture report",
+        "actor": "operator",
+        "human_checkpoint": {
+          "presented_artifact": {
+            "ref_id": "ref-report-for-review",
+            "representation": "full_text",
+            "hash": "d0b6e7bf4fc2d5dcd9e1a85998eb005fae7ccf7ac236b4923daa3bbfb0940ee0",
+            "hash_alg": "sha256",
+            "content": "Weekly Security Posture Report: All systems nominal..."
+          },
+          "presentation_mode": "full_output",
+          "reviewer_action": "approved",
+          "review_duration_ms": 120000
+        },
+        "artifacts": {
+          "inputs": [
+            {
+              "ref_id": "ref-draft-in",
+              "representation": "hash_only",
+              "hash": "76daed48daa768ffafb529d29e57a6dc0e08112cc46693b7d779cfabbf38a2c9",
+              "hash_alg": "sha256"
+            }
+          ],
+          "outputs": [
+            {
+              "ref_id": "ref-approved-report",
+              "representation": "hash_only",
+              "hash": "d1dce7dce55769ec46809f928b5250355b68f85f7f331eeec8ff0e23345150bf",
+              "hash_alg": "sha256",
+              "source_hint": "Output file"
+            }
+          ],
+          "classifications": [
+            {
+              "tag": "PROPRIETARY",
+              "confidence": 1.0,
+              "method": "rule_based",
+              "rule_id": "approved-report-001"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "data_handling": {
+    "storage": {
+      "receipt_storage_location": "local_fs",
+      "content_storage_location": "none",
+      "byok": false
+    },
+    "retention": {
+      "receipt_days": 365,
+      "content_days": 0,
+      "retention_enforcement": {
+        "method": "automated_cron",
+        "last_verified_utc": "2026-02-28T10:00:00+00:00"
+      }
+    },
+    "keys": {
+      "signing_key_id": "demo-key-001",
+      "key_management": "local_kms"
+    }
+  },
+  "integrity": {
+    "canonicalization": {
+      "method": "json_canonicalization_scheme",
+      "notes": "JCS per RFC 8785."
+    },
+    "hash_chain": {
+      "alg": "sha256",
+      "chain": [
+        {
+          "step_id": "step-001",
+          "hash": "6fb5b11d935206e9fc4e496214439a73bc11e14fd1b65a2ec107c69b20639efd",
+          "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "step_id": "step-002",
+          "hash": "e16110890fa39b58ffc3046ac6eacb3967d5e264e435cff472cc8ba8d455860b",
+          "prev_hash": "6fb5b11d935206e9fc4e496214439a73bc11e14fd1b65a2ec107c69b20639efd"
+        },
+        {
+          "step_id": "step-003",
+          "hash": "29d6c407062414946bf3a2211d3ba21cc8869a6f4409b9ea85d417051a4d8906",
+          "prev_hash": "e16110890fa39b58ffc3046ac6eacb3967d5e264e435cff472cc8ba8d455860b"
+        }
+      ],
+      "final_hash": "29d6c407062414946bf3a2211d3ba21cc8869a6f4409b9ea85d417051a4d8906"
+    },
+    "signature": {
+      "type": "hmac_sha256",
+      "key_id": "demo-key-001",
+      "value": "M3ysLjLV5S33jsT6iUpHSETFWeU+zJZMtx2EZjaSgek=",
+      "signed_at_utc": "2026-03-01T10:00:12+00:00",
+      "signed_payload": "canonical_receipt_plus_final_hash",
+      "encoding": "base64",
+      "verification": {
+        "procedure": "WARNING: This receipt has been REVOKED. The signing key (demo-key-001) was compromised. Do NOT trust this signature. See superseding receipt 019539f2-8d5f-7000-8000-ae1f3983a14a for the re-signed version. Original verification: 1. Canonicalize via JCS. 2. Concat with final_hash. 3. HMAC-SHA256 with key_id. 4. Compare base64."
+      }
+    },
+    "attestations": [
+      {
+        "attester": {
+          "principal_id": "usr-dpark-0005",
+          "principal_type": "human_user",
+          "role": "Chief Information Security Officer"
+        },
+        "attested_at_utc": "2026-03-04T16:45:00+00:00",
+        "statement": "I am revoking this receipt and all receipts signed with key demo-key-001 between 2026-02-15 and 2026-03-04 due to key exposure in misconfigured S3 backup. Incident SEC-2026-0091. Replacement receipts are being generated with rotated key."
+      }
+    ]
+  },
+  "compliance": {
+    "verdict": "review_required",
+    "assessed_by": "human_reviewer",
+    "assessor_id": "usr-dpark-0005",
+    "violated_controls": [
+      "SC.L2-3.13.10"
+    ],
+    "risk_score": 6.0,
+    "framework": "CMMC L2",
+    "notes": "Original execution was compliant. Receipt revoked due to post-hoc signing key compromise (not an execution-time violation). SC.L2-3.13.10 (key management) cited because the key exposure represents a cryptographic material handling failure. The execution itself is not in question \u2014 only the integrity of the signature."
+  },
+  "cui_flow": []
+}

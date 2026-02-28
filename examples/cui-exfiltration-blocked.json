@@ -1,0 +1,352 @@
+{
+  "receipt": {
+    "receipt_id": "01eeb61a-1109-4af1-b5df-210002171454",
+    "schema_version": "0.1.1",
+    "schema_hash": "89941bfc0ad9e61f943b4c2916563322b843d6680c050fbd6396700a4245e01e",
+    "created_at_utc": "2026-03-04T09:30:08+00:00",
+    "status": "active",
+    "issuer": {
+      "organization": "Apex Defense Solutions",
+      "product": "NeoXFortress AAE",
+      "build": {
+        "version": "0.1.1-ref",
+        "commit": "7afa8bb"
+      }
+    },
+    "receipt_type": "agent_execution",
+    "labels": [
+      "CMMC",
+      "CUI",
+      "INCIDENT",
+      "BLOCKED"
+    ]
+  },
+  "context": {
+    "subject": {
+      "agent": {
+        "agent_id": "agent-contract-summarizer-002",
+        "name": "Contract Brief Summarizer",
+        "type": "assistant",
+        "agent_version": "1.1.0",
+        "agent_code_hash": "c5fc496114c8cee737670108b05f8a6252add1990b32683c6f67c6f39a9efe53",
+        "framework": {
+          "name": "custom",
+          "version": "1.0.0"
+        },
+        "purpose": "Summarize contract briefs for BD team review",
+        "owner_team": "AI Engineering",
+        "runtime": {
+          "language": "python",
+          "language_version": "3.11.8"
+        }
+      },
+      "operator": {
+        "principal_id": "usr-tchen-0091",
+        "principal_type": "human_user",
+        "authn": {
+          "idp": "Entra ID",
+          "authn_method": "MFA",
+          "session_id": "sess-4fa612f1956b"
+        },
+        "role": "Business Development Analyst"
+      }
+    },
+    "environment": {
+      "deployment_model": "self_hosted",
+      "host": {
+        "hostname_hash": "97d4e7d70367d93479693fc1672c61ba4e85998766d689b6eea120c29f0deacc",
+        "os": "Ubuntu 22.04 LTS",
+        "network_boundary": "CUI enclave",
+        "ip_hash": "ff2f6a6dcdbc384f021505c14927dd140585bbf295529921032b1a08ae44478c"
+      },
+      "clock": {
+        "time_source": "NTP stratum 2",
+        "skew_ms": 2
+      },
+      "deployment_fingerprint": {
+        "container_image_digest": "sha256:73df771ed03fa771aaffbe2cc2e0010411fe07c808e291657c7eec9e7becea3a",
+        "sbom_hash": "8d1651f6e1f309612cf78b01139ea737a639e40041dd82b3557f45069afc646d",
+        "dependency_lockfile_hash": "055367378a327528ce551dce3a0346182d59105f7bf41bbc9acc31d5e1713557"
+      }
+    },
+    "time_window": {
+      "started_at_utc": "2026-03-04T09:30:00+00:00",
+      "ended_at_utc": "2026-03-04T09:30:07+00:00"
+    },
+    "case": {
+      "case_id": "SEC-2026-0087",
+      "case_system": "ServiceNow"
+    }
+  },
+  "policy": {
+    "policy_id": "pol-apex-data-boundary",
+    "policy_version": "3.0.0",
+    "policy_hash": "d290c648efec8df75b2e86e9f6994e0d5110f85dab4473dce7f69f164ceaa387",
+    "controls": {
+      "logging_mode": "metadata_only",
+      "content_capture": "none",
+      "classification_mode": "rule_based",
+      "human_approval_required": true,
+      "tool_allowlist_enforced": true
+    }
+  },
+  "execution": {
+    "run": {
+      "run_id": "0746c0bd-6f36-4391-9d5d-fad4db03639d",
+      "run_purpose": "Summarize contract brief for BD team Slack channel",
+      "status": "failed",
+      "error_summary": "CUI boundary violation: agent attempted to exfiltrate CUI data to external SaaS. Blocked by guardrail.",
+      "inputs": [
+        {
+          "ref_id": "ref-run-in",
+          "representation": "hash_only",
+          "hash": "39f3187357484ec95f5caf50b7092835d15c9c01f28cb7ca079e469ca323e0e2",
+          "hash_alg": "sha256",
+          "source_hint": "Local file",
+          "mime_type": "application/pdf"
+        }
+      ],
+      "outputs": []
+    },
+    "steps": [
+      {
+        "step_id": "step-001",
+        "parent_step_id": null,
+        "timestamp_utc": "2026-03-04T09:30:00+00:00",
+        "type": "human_checkpoint",
+        "summary": "Analyst uploaded classified contract brief for summarization",
+        "actor": "operator",
+        "human_checkpoint": {
+          "presented_artifact": {
+            "ref_id": "ref-upload",
+            "representation": "full_text",
+            "hash": "e2f29476edbd66cd6cfeab9710a4821e12f8f4068651048e8926163218735809",
+            "hash_alg": "sha256",
+            "source_hint": "Local file",
+            "content": "contract-brief-satcom-2026.pdf"
+          },
+          "presentation_mode": "summary",
+          "reviewer_action": "approved",
+          "review_duration_ms": 3100
+        },
+        "artifacts": {
+          "inputs": [
+            {
+              "ref_id": "ref-contract",
+              "representation": "hash_only",
+              "hash": "39f3187357484ec95f5caf50b7092835d15c9c01f28cb7ca079e469ca323e0e2",
+              "hash_alg": "sha256",
+              "source_hint": "Local file",
+              "mime_type": "application/pdf"
+            }
+          ],
+          "outputs": [],
+          "classifications": [
+            {
+              "tag": "CUI_SPECIFIED",
+              "confidence": 1.0,
+              "method": "rule_based",
+              "rule_id": "cui-sp-header-001",
+              "notes": "CUI//SP-EXPT marking detected in header"
+            }
+          ]
+        }
+      },
+      {
+        "step_id": "step-002",
+        "parent_step_id": "step-001",
+        "timestamp_utc": "2026-03-04T09:30:03+00:00",
+        "type": "llm_call",
+        "summary": "Called Claude to summarize classified contract brief",
+        "actor": "agent",
+        "model": {
+          "provider": "Anthropic",
+          "model_id": "claude-sonnet-4-5-20250929",
+          "region": "us-east-1"
+        },
+        "artifacts": {
+          "inputs": [
+            {
+              "ref_id": "ref-prompt",
+              "representation": "hash_only",
+              "hash": "41e492c26c6362529ea62643b28eb137f078d9cc73653685155b598ccbf579b7",
+              "hash_alg": "sha256",
+              "source_hint": "Prompt template"
+            }
+          ],
+          "outputs": [
+            {
+              "ref_id": "ref-llm-out",
+              "representation": "hash_only",
+              "hash": "35b98244cb26888e1126b89c04b57a88f37f2059b525e81e9e32a7adddfbbe97",
+              "hash_alg": "sha256"
+            }
+          ],
+          "classifications": [
+            {
+              "tag": "CUI_SPECIFIED",
+              "confidence": 0.92,
+              "method": "rule_based",
+              "rule_id": "cui-keyword-budget-clearance-004"
+            }
+          ]
+        },
+        "metrics": {
+          "latency_ms": 2800,
+          "tokens_in": 4200,
+          "tokens_out": 890
+        }
+      },
+      {
+        "step_id": "step-003",
+        "parent_step_id": "step-002",
+        "timestamp_utc": "2026-03-04T09:30:07+00:00",
+        "type": "guardrail_event",
+        "summary": "BLOCKED: Agent attempted to send CUI summary to external Slack webhook",
+        "actor": "system",
+        "artifacts": {
+          "inputs": [
+            {
+              "ref_id": "ref-slack-payload",
+              "representation": "hash_only",
+              "hash": "1d18cbd99dc5ebfc66a99deb43aebfdc3a8bce442f9c7a81f6e5e3d03710282f",
+              "hash_alg": "sha256"
+            }
+          ],
+          "outputs": [],
+          "classifications": [
+            {
+              "tag": "CUI_SPECIFIED",
+              "confidence": 1.0,
+              "method": "rule_based",
+              "rule_id": "cui-exfil-detect-001"
+            }
+          ],
+          "guardrails": [
+            {
+              "event_id": "gr-block-001",
+              "timestamp_utc": "2026-03-04T09:30:07+00:00",
+              "event_type": "block",
+              "action": "blocked",
+              "reason": "CUI//SP-EXPT content detected in outbound payload to external endpoint. Transmission blocked per policy pol-apex-data-boundary v3.0.",
+              "policy_rule_id": "cui-exfil-block-001",
+              "attempted_action": "POST CUI-containing JSON payload to Slack webhook (external SaaS)",
+              "target_resource_hint": "Slack:webhook/T0****/B0****/****"
+            }
+          ]
+        },
+        "error": {
+          "code": "CUI_BOUNDARY_VIOLATION",
+          "message": "Agent attempted to transmit CUI data across boundary to external SaaS endpoint. Action blocked by guardrail.",
+          "recoverable": false
+        }
+      }
+    ]
+  },
+  "data_handling": {
+    "storage": {
+      "receipt_storage_location": "local_fs",
+      "content_storage_location": "none",
+      "byok": false
+    },
+    "retention": {
+      "receipt_days": 730,
+      "content_days": 0,
+      "retention_enforcement": {
+        "method": "automated_cron",
+        "last_verified_utc": "2026-03-03T09:30:00+00:00"
+      }
+    },
+    "keys": {
+      "signing_key_id": "demo-key-001",
+      "key_management": "local_kms"
+    }
+  },
+  "integrity": {
+    "canonicalization": {
+      "method": "json_canonicalization_scheme",
+      "notes": "JCS per RFC 8785."
+    },
+    "hash_chain": {
+      "alg": "sha256",
+      "chain": [
+        {
+          "step_id": "step-001",
+          "hash": "bb38a10ec91a965b20590b470426f49158ac79dbff5ce26c9af6456724201f86",
+          "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "step_id": "step-002",
+          "hash": "c5430af1aba5fe41bdf932ad8b72474982068b93699b7134dbd9ab860ce2bfa7",
+          "prev_hash": "bb38a10ec91a965b20590b470426f49158ac79dbff5ce26c9af6456724201f86"
+        },
+        {
+          "step_id": "step-003",
+          "hash": "50aac04ee60cb698d50cc2f5d3bb8440e3bac1c275da25a3d89a4c34f773bb16",
+          "prev_hash": "c5430af1aba5fe41bdf932ad8b72474982068b93699b7134dbd9ab860ce2bfa7"
+        }
+      ],
+      "final_hash": "50aac04ee60cb698d50cc2f5d3bb8440e3bac1c275da25a3d89a4c34f773bb16"
+    },
+    "signature": {
+      "type": "hmac_sha256",
+      "key_id": "demo-key-001",
+      "value": "bv/VvUaYUOg7e8FsWAw4vBSm/dhjHFyh6htggG6dsR4=",
+      "signed_at_utc": "2026-03-04T09:30:08+00:00",
+      "signed_payload": "canonical_receipt_plus_final_hash",
+      "encoding": "base64",
+      "verification": {
+        "procedure": "1. Canonicalize via JCS. 2. Concat with final_hash. 3. HMAC-SHA256 with key_id. 4. Compare base64. NOTE: Symmetric HMAC in v0.1.1."
+      }
+    }
+  },
+  "compliance": {
+    "verdict": "non_compliant",
+    "assessed_by": "engine_rule_set",
+    "violated_controls": [
+      "SC.L2-3.13.1",
+      "SC.L2-3.13.2"
+    ],
+    "risk_score": 8.5,
+    "framework": "CMMC L2",
+    "notes": "Agent attempted CUI exfiltration to external SaaS. Blocked by guardrail. No data left the enclave. Incident logged for review."
+  },
+  "cui_flow": [
+    {
+      "direction": "in",
+      "boundary": "Local file system (CUI enclave) to agent memory",
+      "data_hash": "39f3187357484ec95f5caf50b7092835d15c9c01f28cb7ca079e469ca323e0e2",
+      "classification": "CUI_SPECIFIED",
+      "redacted": false,
+      "step_ids": [
+        "step-001"
+      ],
+      "timestamp_utc": "2026-03-04T09:30:00+00:00",
+      "policy_rule_id": "cui-ingest-allow-001"
+    },
+    {
+      "direction": "out",
+      "boundary": "Agent memory to Anthropic API (external)",
+      "data_hash": "35b98244cb26888e1126b89c04b57a88f37f2059b525e81e9e32a7adddfbbe97",
+      "classification": "CUI_SPECIFIED",
+      "redacted": false,
+      "step_ids": [
+        "step-002"
+      ],
+      "timestamp_utc": "2026-03-04T09:30:03+00:00",
+      "policy_rule_id": "cui-llm-transit-002"
+    },
+    {
+      "direction": "out",
+      "boundary": "BLOCKED: Agent memory to Slack webhook (external SaaS)",
+      "data_hash": "1d18cbd99dc5ebfc66a99deb43aebfdc3a8bce442f9c7a81f6e5e3d03710282f",
+      "classification": "CUI_SPECIFIED",
+      "redacted": false,
+      "step_ids": [
+        "step-003"
+      ],
+      "timestamp_utc": "2026-03-04T09:30:07+00:00",
+      "policy_rule_id": "cui-exfil-block-001"
+    }
+  ]
+}

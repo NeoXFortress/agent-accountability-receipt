@@ -1,0 +1,389 @@
+{
+  "receipt": {
+    "receipt_id": "060cdae1-a04d-428b-b997-fbeba66f5df2",
+    "schema_version": "0.1.1",
+    "schema_hash": "89941bfc0ad9e61f943b4c2916563322b843d6680c050fbd6396700a4245e01e",
+    "created_at_utc": "2026-03-05T11:15:14+00:00",
+    "status": "active",
+    "issuer": {
+      "organization": "Apex Defense Solutions",
+      "product": "NeoXFortress AAE",
+      "build": {
+        "version": "0.1.1-ref",
+        "commit": "7afa8bb"
+      }
+    },
+    "receipt_type": "agent_execution",
+    "labels": [
+      "DFARS",
+      "COMPLIANCE",
+      "REJECTED",
+      "HALLUCINATION"
+    ]
+  },
+  "context": {
+    "subject": {
+      "agent": {
+        "agent_id": "agent-dfars-advisor-003",
+        "name": "DFARS Clause Advisor",
+        "type": "assistant",
+        "agent_version": "2.0.0",
+        "agent_code_hash": "b708eb0b3b15544fd8f96bcbd881fd65af4b9737420b8afd3841bc5999a5352e",
+        "framework": {
+          "name": "custom",
+          "version": "1.0.0"
+        },
+        "purpose": "Answer DFARS clause interpretation questions for contracts team",
+        "owner_team": "AI Engineering",
+        "runtime": {
+          "language": "python",
+          "language_version": "3.11.8"
+        }
+      },
+      "operator": {
+        "principal_id": "usr-akumar-0067",
+        "principal_type": "human_user",
+        "authn": {
+          "idp": "Entra ID",
+          "authn_method": "MFA",
+          "session_id": "sess-2a8047a02349"
+        },
+        "role": "Contracts Specialist"
+      },
+      "sponsor": {
+        "principal_id": "usr-rliu-0023",
+        "principal_type": "human_user",
+        "role": "Compliance Lead"
+      }
+    },
+    "environment": {
+      "deployment_model": "self_hosted",
+      "host": {
+        "hostname_hash": "b8826e824637c1831fc1be29134f024aaac5130ff4ea01b8cc33c3dbfdac19cd",
+        "os": "Ubuntu 22.04 LTS",
+        "network_boundary": "Corp IT",
+        "ip_hash": "01573af86c0570b8270c2c418a776ae8d1e23e1c6fb2510462d5b5fe4ce2103e"
+      },
+      "clock": {
+        "time_source": "NTP stratum 2",
+        "skew_ms": 1
+      },
+      "deployment_fingerprint": {
+        "container_image_digest": "sha256:73df771ed03fa771aaffbe2cc2e0010411fe07c808e291657c7eec9e7becea3a",
+        "sbom_hash": "8d1651f6e1f309612cf78b01139ea737a639e40041dd82b3557f45069afc646d",
+        "dependency_lockfile_hash": "055367378a327528ce551dce3a0346182d59105f7bf41bbc9acc31d5e1713557"
+      }
+    },
+    "time_window": {
+      "started_at_utc": "2026-03-05T11:15:00+00:00",
+      "ended_at_utc": "2026-03-05T11:15:12+00:00"
+    }
+  },
+  "policy": {
+    "policy_id": "pol-apex-ai-governance",
+    "policy_version": "2.1.0",
+    "policy_hash": "14f3b1a38d40c8f4ed7fe512cd3f1a2eb34258841035d681ddf9092fe0c617fc",
+    "controls": {
+      "logging_mode": "metadata_only",
+      "content_capture": "none",
+      "classification_mode": "rule_based",
+      "human_approval_required": true,
+      "tool_allowlist_enforced": true
+    }
+  },
+  "execution": {
+    "run": {
+      "run_id": "2d8b313e-4fd4-4e79-b63e-278bb22bac21",
+      "run_purpose": "Answer DFARS 252.204-7012 reporting timeline question",
+      "status": "partial",
+      "error_summary": "Human reviewer rejected agent draft due to factual error (hallucinated 24h vs actual 72h reporting requirement).",
+      "inputs": [
+        {
+          "ref_id": "ref-run-in",
+          "representation": "hash_only",
+          "hash": "115824b1c8dc54f21b559da4facb254d222417062894df7eb596e956f532a540",
+          "hash_alg": "sha256",
+          "source_hint": "User input"
+        }
+      ],
+      "outputs": []
+    },
+    "steps": [
+      {
+        "step_id": "step-001",
+        "parent_step_id": null,
+        "timestamp_utc": "2026-03-05T11:15:00+00:00",
+        "type": "human_checkpoint",
+        "summary": "Contracts specialist submitted DFARS clause inquiry to agent",
+        "actor": "operator",
+        "human_checkpoint": {
+          "presented_artifact": {
+            "ref_id": "ref-question-preview",
+            "representation": "full_text",
+            "hash": "115824b1c8dc54f21b559da4facb254d222417062894df7eb596e956f532a540",
+            "hash_alg": "sha256",
+            "content": "Does DFARS 252.204-7012 require us to report cyber incidents within 24 hours?"
+          },
+          "presentation_mode": "full_output",
+          "reviewer_action": "approved",
+          "review_duration_ms": 2100
+        },
+        "artifacts": {
+          "inputs": [
+            {
+              "ref_id": "ref-question",
+              "representation": "hash_only",
+              "hash": "115824b1c8dc54f21b559da4facb254d222417062894df7eb596e956f532a540",
+              "hash_alg": "sha256",
+              "source_hint": "User input"
+            }
+          ],
+          "outputs": [],
+          "classifications": [
+            {
+              "tag": "PUBLIC",
+              "confidence": 1.0,
+              "method": "rule_based",
+              "rule_id": "dfars-ref-public-001"
+            }
+          ]
+        }
+      },
+      {
+        "step_id": "step-002",
+        "parent_step_id": "step-001",
+        "timestamp_utc": "2026-03-05T11:15:04+00:00",
+        "type": "llm_call",
+        "summary": "Called GPT-4 to draft DFARS clause interpretation",
+        "actor": "agent",
+        "model": {
+          "provider": "OpenAI",
+          "model_id": "gpt-4-turbo-2025-12-01",
+          "region": "us-east-1"
+        },
+        "artifacts": {
+          "inputs": [
+            {
+              "ref_id": "ref-prompt",
+              "representation": "hash_only",
+              "hash": "813ee0b8b7b160f23ed3dc6794e3a4b959c0ae8a0bcba0b6c000538b77330bb0",
+              "hash_alg": "sha256",
+              "source_hint": "Prompt template"
+            }
+          ],
+          "outputs": [
+            {
+              "ref_id": "ref-draft",
+              "representation": "hash_only",
+              "hash": "4635a0cdfbfd651f6bfe964408512c3c39202f24288c1fa259898328c26ec382",
+              "hash_alg": "sha256"
+            }
+          ],
+          "classifications": [
+            {
+              "tag": "PROPRIETARY",
+              "confidence": 0.6,
+              "method": "rule_based",
+              "rule_id": "internal-analysis-tag-001"
+            }
+          ]
+        },
+        "metrics": {
+          "latency_ms": 1800,
+          "tokens_in": 320,
+          "tokens_out": 185
+        }
+      },
+      {
+        "step_id": "step-003",
+        "parent_step_id": "step-002",
+        "timestamp_utc": "2026-03-05T11:15:08+00:00",
+        "type": "tool_call",
+        "summary": "Ran factual cross-check against DFARS regulation database",
+        "actor": "agent",
+        "tool": {
+          "tool_name": "dfars_reference_lookup",
+          "tool_version": "2.0.1",
+          "endpoint_hint": "internal:dfars-db/***",
+          "permission_scope": "read_regulations"
+        },
+        "artifacts": {
+          "inputs": [
+            {
+              "ref_id": "ref-lookup-query",
+              "representation": "hash_only",
+              "hash": "05763a1d28bf0abf150f9837059302cbb4119643052434a99e33c24035186360",
+              "hash_alg": "sha256"
+            }
+          ],
+          "outputs": [
+            {
+              "ref_id": "ref-lookup-result",
+              "representation": "hash_only",
+              "hash": "6c68985b766849c309d38b25266cd9d0431f8d5a8d896ee1064f106e4e474c63",
+              "hash_alg": "sha256"
+            }
+          ],
+          "classifications": [
+            {
+              "tag": "PUBLIC",
+              "confidence": 1.0,
+              "method": "rule_based",
+              "rule_id": "regulation-public-001"
+            }
+          ]
+        },
+        "metrics": {
+          "latency_ms": 120
+        }
+      },
+      {
+        "step_id": "step-004",
+        "parent_step_id": "step-003",
+        "timestamp_utc": "2026-03-05T11:15:10+00:00",
+        "type": "guardrail_event",
+        "summary": "WARNING: Factual inconsistency detected \u2014 LLM output contradicts regulation database",
+        "actor": "system",
+        "artifacts": {
+          "inputs": [
+            {
+              "ref_id": "ref-inconsistency-input",
+              "representation": "hash_only",
+              "hash": "e913d164b2279c4919b7ac038862515fb1307db1def7ed6c28db0a1df6762ce3",
+              "hash_alg": "sha256"
+            }
+          ],
+          "outputs": [],
+          "classifications": [],
+          "guardrails": [
+            {
+              "event_id": "gr-warn-001",
+              "timestamp_utc": "2026-03-05T11:15:10+00:00",
+              "event_type": "warn",
+              "action": "warned",
+              "reason": "LLM stated 24-hour reporting requirement; regulation database confirms 72-hour requirement under DFARS 252.204-7012(c)(1). Possible hallucination.",
+              "policy_rule_id": "factual-consistency-check-001",
+              "attempted_action": "Present draft with unverified regulatory claim to human reviewer",
+              "target_resource_hint": "Agent output buffer"
+            }
+          ]
+        }
+      },
+      {
+        "step_id": "step-005",
+        "parent_step_id": "step-004",
+        "timestamp_utc": "2026-03-05T11:15:12+00:00",
+        "type": "human_checkpoint",
+        "summary": "REJECTED: Compliance lead rejected draft \u2014 incorrect reporting timeline (24h vs 72h)",
+        "actor": "operator",
+        "human_checkpoint": {
+          "presented_artifact": {
+            "ref_id": "ref-review-draft",
+            "representation": "full_text",
+            "hash": "5f54f4fe2a433594563e5ec8c1dee8a43b213363920cd6783f7e00f5b14ee9f4",
+            "hash_alg": "sha256",
+            "content": "Yes. DFARS 252.204-7012 requires contractors to report cyber incidents to the DoD within 24 hours of discovery. This is mandated under section 4(c) of the regulation, which specifies rapid reporting to DC3.\n\n[SYSTEM WARNING: Factual inconsistency detected. DB says 72 hours, draft says 24 hours.]"
+          },
+          "presentation_mode": "full_output",
+          "reviewer_action": "rejected",
+          "review_duration_ms": 67000
+        },
+        "artifacts": {
+          "inputs": [
+            {
+              "ref_id": "ref-draft-for-review",
+              "representation": "hash_only",
+              "hash": "4635a0cdfbfd651f6bfe964408512c3c39202f24288c1fa259898328c26ec382",
+              "hash_alg": "sha256"
+            }
+          ],
+          "outputs": [],
+          "classifications": [
+            {
+              "tag": "PROPRIETARY",
+              "confidence": 0.5,
+              "method": "rule_based",
+              "rule_id": "draft-internal-001"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "data_handling": {
+    "storage": {
+      "receipt_storage_location": "local_fs",
+      "content_storage_location": "none",
+      "byok": false
+    },
+    "retention": {
+      "receipt_days": 365,
+      "content_days": 0,
+      "retention_enforcement": {
+        "method": "automated_cron",
+        "last_verified_utc": "2026-03-04T11:15:00+00:00"
+      }
+    },
+    "keys": {
+      "signing_key_id": "demo-key-001",
+      "key_management": "local_kms"
+    }
+  },
+  "integrity": {
+    "canonicalization": {
+      "method": "json_canonicalization_scheme",
+      "notes": "JCS per RFC 8785."
+    },
+    "hash_chain": {
+      "alg": "sha256",
+      "chain": [
+        {
+          "step_id": "step-001",
+          "hash": "afb531f6583bbe57465a335c730644f8d5e299b35904e2531e29df0468413562",
+          "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "step_id": "step-002",
+          "hash": "8e1a60f9cd3dafe62f581ae5ec37a225bcd4bac1e000c357606153043607c70a",
+          "prev_hash": "afb531f6583bbe57465a335c730644f8d5e299b35904e2531e29df0468413562"
+        },
+        {
+          "step_id": "step-003",
+          "hash": "cb80ba28e3acc5a1557e36dea9affe8dded43d0ff81da4d465e431ad17207376",
+          "prev_hash": "8e1a60f9cd3dafe62f581ae5ec37a225bcd4bac1e000c357606153043607c70a"
+        },
+        {
+          "step_id": "step-004",
+          "hash": "3d7899e2e3915bad2e1784a3ecb4e39d0f38e5980dfc49699eb7c22f18002fab",
+          "prev_hash": "cb80ba28e3acc5a1557e36dea9affe8dded43d0ff81da4d465e431ad17207376"
+        },
+        {
+          "step_id": "step-005",
+          "hash": "11357ac984d2b96878bcf2c8d04a80664078789b2bbb86f233f9cbeb157fef52",
+          "prev_hash": "3d7899e2e3915bad2e1784a3ecb4e39d0f38e5980dfc49699eb7c22f18002fab"
+        }
+      ],
+      "final_hash": "11357ac984d2b96878bcf2c8d04a80664078789b2bbb86f233f9cbeb157fef52"
+    },
+    "signature": {
+      "type": "hmac_sha256",
+      "key_id": "demo-key-001",
+      "value": "7CoIozyo7TrzmL7DHEXOIez+25tEqpyjpycgE9foIEw=",
+      "signed_at_utc": "2026-03-05T11:15:14+00:00",
+      "signed_payload": "canonical_receipt_plus_final_hash",
+      "encoding": "base64",
+      "verification": {
+        "procedure": "1. Canonicalize via JCS. 2. Concat with final_hash. 3. HMAC-SHA256 with key_id. 4. Compare base64. NOTE: Symmetric HMAC in v0.1.1."
+      }
+    }
+  },
+  "compliance": {
+    "verdict": "review_required",
+    "assessed_by": "engine_rule_set",
+    "violated_controls": [],
+    "risk_score": 4.0,
+    "framework": "CMMC L2",
+    "notes": "No policy violations detected. Human reviewer rejected output due to factual inaccuracy (hallucination). Agent correctly flagged inconsistency before human review. Review_required because rejected outputs should be assessed for systemic hallucination patterns."
+  },
+  "cui_flow": []
+}
