@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: pip install jsonschema
+
+      - name: Generate all example receipts
+        run: |
+          cd reference_impl
+          python generate_receipt.py
+          python scenario_cui_blocked.py
+          python scenario_human_rejected.py
+          python scenario_revoked.py
+
+      - name: Validate all receipts against schema
+        run: |
+          for f in examples/*.json; do
+            echo "Validating $f..."
+            python -m jsonschema -i "$f" schema.json
+            echo "  PASS: $f"
+          done
+
+      - name: Verify hash chains
+        run: |
+          python -c "
+          import json, hashlib
+
+          def verify(path):
+              with open(path) as f:
+                  r = json.load(f)
+              chain = r['integrity']['hash_chain']['chain']
+              steps = r['execution']['steps']
+              prev = '0' * 64
+              for entry, step in zip(chain, steps):
+                  data = prev.encode() + json.dumps(step, sort_keys=True, separators=(',',':')).encode()
+                  h = hashlib.sha256(data).hexdigest()
+                  assert entry['hash'] == h, f'Hash mismatch at {entry[\"step_id\"]}'
+                  prev = h
+              assert prev == r['integrity']['hash_chain']['final_hash']
+              print(f'  PASS: {path} ({len(chain)} steps)')
+
+          import glob
+          for f in glob.glob('examples/*.json'):
+              verify(f)
+          "
