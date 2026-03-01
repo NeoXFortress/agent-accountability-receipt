@@ -1,0 +1,72 @@
+# NeoXFortress Agent Accountability Engine — Policy Configuration
+# This file defines the governance rules for agent execution.
+
+policy_id: pol-apex-ai-governance
+policy_version: "2.1.0"
+
+controls:
+  logging_mode: metadata_only        # metadata_only | metadata_plus_selected_content
+  content_capture: none              # none | redacted | full
+  classification_mode: rule_based    # rule_based (v0.1.1 only)
+  human_approval_required: true
+  tool_allowlist_enforced: true
+
+# Tools allowed to execute
+tool_allowlist:
+  - classify_text
+  - redact_text
+  - send_slack
+
+# Classification rules for CUI/PII/ITAR detection
+classification_rules:
+  - id: cui-header-001
+    tag: CUI
+    patterns:
+      - '\bCUI\b'
+      - 'CONTROLLED\s+UNCLASSIFIED'
+      - 'CUI//[A-Z\-]+'
+      - 'DISTRIBUTION\s+(STATEMENT\s+)?[A-F]'
+    confidence: 1.0
+
+  - id: cui-sp-001
+    tag: CUI_SPECIFIED
+    patterns:
+      - 'CUI//SP-[A-Z]+'
+      - 'CUI\s+SPECIFIED'
+    confidence: 1.0
+
+  - id: pii-ssn-001
+    tag: PII
+    patterns:
+      - '\b\d{3}-\d{2}-\d{4}\b'
+    confidence: 0.95
+
+  - id: pii-email-001
+    tag: PII
+    patterns:
+      - '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+    confidence: 0.85
+
+  - id: itar-001
+    tag: ITAR
+    patterns:
+      - '\bITAR\b'
+      - 'INTERNATIONAL\s+TRAFFIC\s+IN\s+ARMS'
+      - 'USML\s+CATEGORY'
+    confidence: 0.9
+
+# Guardrail rules
+guardrails:
+  block_on_tags:
+    - CUI
+    - CUI_SPECIFIED
+    - ITAR
+  block_destinations:
+    - slack
+    - email
+    - external_api
+
+# Retention
+retention:
+  receipt_days: 365
+  content_days: 0
