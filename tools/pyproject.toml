@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "neox-verify"
+version = "0.1.1"
+authors = [
+  { name="Julio Berroa / NeoXFortress LLC", email="contact@neoxfortress.com" },
+]
+description = "Open-source verifier for NeoXFortress Agent Accountability Receipts"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Information Technology",
+    "Topic :: Security",
+]
+dependencies = ["jsonschema>=4.0"]
+
+[project.scripts]
+neox = "neox_verify:main"
+
+[project.urls]
+"Homepage" = "https://github.com/NeoXFortress/agent-accountability-receipt"
+"Bug Tracker" = "https://github.com/NeoXFortress/agent-accountability-receipt/issues"
